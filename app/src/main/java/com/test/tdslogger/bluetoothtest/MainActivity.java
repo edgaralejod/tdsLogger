@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -85,7 +87,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, BTPairingActivity.class);
             startActivity(intent);
         }else if (id == R.id.nav_share) {
-
+            Intent intent = new Intent(this, ListActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_send) {
 
         }

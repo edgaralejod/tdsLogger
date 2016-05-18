@@ -9,4 +9,9 @@
     <string name="select_device">Select Device</string>
     <string name="pair_device">Pair Device</string>
 
+    <string name="button_connect">Connect</string>
+    <string name="button_disconnect">Disconnect</string>
+    <string name="title_devices">Devices</string>
+    <string name="scan">Scan</string>
+    <string name="stopScan">Stop Scanning</string>
 </resources>
