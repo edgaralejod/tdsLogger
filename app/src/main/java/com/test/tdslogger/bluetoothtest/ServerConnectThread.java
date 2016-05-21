@@ -1,4 +1,4 @@
-package com.test.tdslogger.bluetoothtest.Connecting;
+package com.test.tdslogger.bluetoothtest;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;

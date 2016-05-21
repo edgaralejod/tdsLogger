@@ -84,11 +84,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.start_pairing_act) {
-            Intent intent = new Intent(this, BTPairingActivity.class);
+            Intent intent = new Intent(this, BtPair.class);
             startActivity(intent);
         }else if (id == R.id.nav_share) {
-            Intent intent = new Intent(this, ListActivity.class);
-            startActivity(intent);
+
         } else if (id == R.id.nav_send) {
 
         }
