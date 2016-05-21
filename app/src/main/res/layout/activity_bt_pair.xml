@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".BTPairingActivity">
+    tools:context="com.test.tdslogger.bluetoothtest.BtPair">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -20,8 +20,7 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            android:visibility="visible">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -33,7 +32,7 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_bluethoot_pairing" />
+    <include layout="@layout/content_bt_pair" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
