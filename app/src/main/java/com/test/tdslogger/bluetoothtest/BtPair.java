@@ -13,15 +13,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Set;
+import com.macroyau.blue2serial.BluetoothSerial;
+import com.macroyau.blue2serial.BluetoothSerialListener;
 
-public class BtPair extends AppCompatActivity {
+import java.util.Set;
+import java.util.UUID;
+
+public class BtPair extends AppCompatActivity implements BluetoothSerialListener{
     private final static int REQUEST_ENABLE_BT = 1;
     private final static String LOG_TAG = BtPair.class.getSimpleName();
     private LinearLayout myLayout;
+    private BluetoothSerial mBluetoothSerial;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mBluetoothSerial = new BluetoothSerial(getApplicationContext(),this);
+        mBluetoothSerial.setup();
         setContentView(R.layout.activity_bt_pair);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         myLayout= (LinearLayout) findViewById(R.id.btPair_linLayout);
@@ -34,6 +41,16 @@ public class BtPair extends AppCompatActivity {
                     Intent intentOpenBluetoothSettings = new Intent();
                     intentOpenBluetoothSettings.setAction(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
                     startActivity(intentOpenBluetoothSettings);
+                }
+            });
+        }
+        FloatingActionButton fab1 = (FloatingActionButton) findViewById(R.id.test_fab);
+        if(fab1 != null) {
+            fab1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mBluetoothSerial.writeln("TryThis");
+                    Log.d(LOG_TAG,"aca");
                 }
             });
         }
@@ -79,7 +96,7 @@ public class BtPair extends AppCompatActivity {
             View[] btDevices = new View[numberOfDevices];
             for(int i =0; i<numberOfDevices;i++){
                 btDevices[i] = getLayoutInflater().inflate(R.layout.card_layout,myLayout,false);
-                btDevices[i].setTag(i);
+                btDevices[i].setTag(arrayDevices[i]);
                 btDevices[i].setOnClickListener(new MyOnClickListener(i));
                 TextView textViewName = (TextView)btDevices[i].findViewById(R.id.bt_device_name);
                 textViewName.setText(arrayDevices[i].getName());
@@ -90,6 +107,42 @@ public class BtPair extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public void onBluetoothNotSupported() {
+
+    }
+
+    @Override
+    public void onBluetoothDisabled() {
+
+    }
+
+    @Override
+    public void onBluetoothDeviceDisconnected() {
+
+    }
+
+    @Override
+    public void onConnectingBluetoothDevice() {
+
+    }
+
+    @Override
+    public void onBluetoothDeviceConnected(String name, String address) {
+
+    }
+
+    @Override
+    public void onBluetoothSerialRead(String message) {
+
+    }
+
+    @Override
+    public void onBluetoothSerialWrite(String message) {
+
+    }
+
     public class MyOnClickListener implements View.OnClickListener {
 
         int index;
@@ -100,9 +153,8 @@ public class BtPair extends AppCompatActivity {
 
         @Override
         public void onClick(View arg0) {
-            TextView mac_id = (TextView)arg0.findViewById(R.id.bt_device_mac);
-            Log.i("Device", (String) mac_id.getText());
+            BluetoothDevice selectedBTDevice = (BluetoothDevice) arg0.getTag();
+            mBluetoothSerial.connect(selectedBTDevice);
         }
     }
-
 }

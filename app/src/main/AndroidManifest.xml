@@ -29,6 +29,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.test.tdslogger.bluetoothtest.MainActivity" />
+
         </activity>
     </application>
 
